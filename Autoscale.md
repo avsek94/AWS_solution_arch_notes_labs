@@ -1,7 +1,7 @@
 <h1>Creating an auto scaling group and Application Load Balancer in AWS</h1>
 
+## Some user data to test the labs for this project
 
-## Some user data to test the labs for this project 
  ```bash
  #!/bin/bash
  yum update -y
@@ -18,34 +18,34 @@
  wget https://raw.githubusercontent.com/linuxacademy/content-aws-csa2019/master/lab_files/07_hybrid_scaling/ASGandALB/pinehead.png
 
 ```
-## Use the following command to the strees test on the web server we installed.
 
+## Use the following command to the strees test on the web server we installed
 
 ```bash
-#installtion needed 
+#installtion needed
 sudo amazon-linux-extras install epel -y
 
 sudo yum install -y stress
 
-#strees testing command 
-stress --cpu 2 --timeout 300 
+#strees testing command
+stress --cpu 2 --timeout 300
 
 ```
+
 Creating an application Load Balancer to load balance between EC2 instances you will create later on inside your Autoscaling group:
 
-* 	Navigate to the EC2 portion of the console
-*	Click on the Load Balancers section under Load Balancing
-*	Press the Create button under the Application Load Balancer
-*  Name your Load Balancer - LABALB, leave the ALB set to internet          facing and the ip address type as ipv4
-*	Select the VPC and add the us-east-1a and us-east-1b AZs to your ALB, but NOT the us-east-1c AZ
-*  Create a new Security Group for your ALB, for name and description use ALBSG. 
+* Navigate to the EC2 portion of the console
+* Click on the Load Balancers section under Load Balancing
+* Press the Create button under the Application Load Balancer
+* Name your Load Balancer - LABALB, leave the ALB set to internet          facing and the ip address type as ipv4
+* Select the VPC and add the us-east-1a and us-east-1b AZs to your ALB, but NOT the us-east-1c AZ
+* Create a new Security Group for your ALB, for name and description use ALBSG.
 *  Configure rules ensuring that HTTP is allowed from 0.0.0.0/0 and ::/0 (IPV6)
 *	Configure a Target Group for your ALB naming it ALBTG
-*	Expand advanced health check settings and reduce the healthy threshold check down to 2
+* Expand advanced health check settings and reduce the healthy threshold check down to 2
 *	Proceed to create your ALB.
 
-
-### Create and configure the auto scaloing group used to scale the instances.
+### Create and configure the auto scaloing group used to scale the instances
 
 * EC2 -> Auto Scaling -> Auto Scaling Groups
 * Create auto scaling group, select launch template, choose the template you just created
@@ -55,7 +55,7 @@ Creating an application Load Balancer to load balance between EC2 instances you 
 * Click next configure scaling policies
 * For now, keep the group at the initial size, next configure notifications, next configure tags, review, create, click close.
 
-** MAKE SURE THE APPLICATION LOAD BALANCER IS READY AT THIS POINT **
+**MAKE SURE THE APPLICATION LOAD BALANCER IS READY AT THIS POINT**
 
 ### Enable Group Metrics Collection
 * Click actions then click edit
@@ -90,9 +90,9 @@ sudo amazon-linux-extras install epel -y
 sudo yum install -y stress
 
 #strees testing command 
-* Run the Stress test on the EC2 instances stress --cpu 2 --timeout 300 (Optionally using 3000 for timeout)
+*  Run the Stress test on the EC2 instances stress --cpu 2 --timeout 300 (Optionally using 3000 for timeout)
 
-* After a few minutes watch the number of intances increase.
+*  fter a few minutes watch the number of intances increase.
 
 
 
